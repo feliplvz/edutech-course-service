@@ -91,12 +91,54 @@
 spring.application.name=course-service
 server.port=8082
 
-# 🗄️ Base de Datos PostgreSQL (Railway Cloud)
-spring.datasource.url=jdbc:postgresql://yamabiko.proxy.rlwy.net:41638/railway
-spring.datasource.username=postgres
-spring.datasource.password=[PRODUCTION_PASSWORD]
+# 🗄️ Base de Datos PostgreSQL (Configurar según tu entorno)
+spring.datasource.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/coursedb}
+spring.datasource.username=${DATABASE_USERNAME:postgres}
+spring.datasource.password=${DATABASE_PASSWORD:your_password_here}
 
 # 🚀 Configuración JPA Optimizada
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false  # Optimizado para producción
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
+
+### 🔐 Configuración de Seguridad
+
+#### 🌐 Entornos de Despliegue
+
+**🚀 Producción (Railway/Heroku/AWS):**
+```bash
+# Variables de entorno del sistema
+DATABASE_URL=jdbc:postgresql://your-host:port/database
+DATABASE_USERNAME=your_username
+DATABASE_PASSWORD=your_secure_password
+```
+
+**💻 Desarrollo Local:**
+```bash
+# Crear archivo .env (incluido en .gitignore)
+DATABASE_URL=jdbc:postgresql://localhost:5432/coursedb_dev
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=admin123
+```
+
+**🐳 Docker Compose:**
+```yaml
+# docker-compose.yml
+services:
+  course-service:
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/coursedb
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres123
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=coursedb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+```
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=false  # Optimizado para producción
 spring.jpa.properties.hibernate.format_sql=true
@@ -449,7 +491,7 @@ categoryId: 1 | courseId: 1 | testInstructorId: 123
 
 **🌟 ¡Gracias por usar EduTech Course Service! 🌟**
 
-*Desarrollado por **Felipe López** para la excelencia en arquitectura de microservicios*
+*Desarrollado por **Felipe López**
 
 Para más información, visita nuestra [documentación completa](https://github.com/feliplvz/course-service)
 
@@ -467,17 +509,37 @@ Para más información, visita nuestra [documentación completa](https://github.
 - ✅ **Prevención de Duplicados**: Validación de nombres únicos
 - ✅ **Integridad Referencial**: Validación de eliminaciones en cascada
 
+### 🔐 Gestión de Credenciales
+- ✅ **Variables de Entorno**: Credenciales nunca en código fuente
+- ✅ **Archivo .env.example**: Template para configuración local
+- ✅ **GitIgnore Seguro**: Archivos sensibles excluidos del repositorio
+- ✅ **Separación de Entornos**: Configuraciones por ambiente
+
 ### 🌐 Configuración CORS
 - ✅ **CORS Empresarial**: Configuración avanzada para integración
 - ✅ **Headers Permitidos**: Content-Type, Authorization
 - ✅ **Métodos HTTP**: GET, POST, PUT, PATCH, DELETE
 - ✅ **Orígenes Configurables**: Para desarrollo y producción
 
-### 🔐 Mejores Prácticas
+### 🔐 Mejores Prácticas Implementadas
 - ✅ **Validación Robusta**: Datos de entrada siempre validados
 - ✅ **Error Handling**: Respuestas consistentes y seguras
 - ✅ **SQL Injection**: Protección mediante JPA/Hibernate
 - ✅ **XSS Prevention**: Validación de contenido HTML
+- ✅ **Secrets Management**: Variables de entorno para credenciales
+- ✅ **Environment Separation**: Configuraciones por entorno
+
+
+**🔧 Configuración Segura:**
+```bash
+# 1. Copia el template
+cp .env.example .env
+
+# 2. Edita con tus credenciales reales
+nano .env
+
+# 3. ¡El archivo .env nunca se commitea!
+```
 
 ---
 

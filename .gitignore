@@ -50,6 +50,21 @@ build/
 # macOS
 .DS_Store
 
+# 🔐 Archivos de Configuración Sensibles
+.env
+.env.local
+.env.production
+.env.development
+application-secrets.properties
+application-production.properties
+
+# 🗄️ Credenciales y Claves
+*.key
+*.pem
+*.p12
+secrets/
+credentials/
+
 # Windows
 Thumbs.db
 ehthumbs.db
