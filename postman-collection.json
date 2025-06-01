@@ -1,23 +1,23 @@
 {
   "info": {
-    "name": "🎓 Course Service API - Enterprise Test Suite",
-    "description": "Colección empresarial completa para el microservicio Course Service. Incluye 30+ endpoints con casos de prueba positivos/negativos, validaciones automatizadas, tests de performance y manejo de errores. Diseñada para QA y DevOps.",
+    "name": "🎓 Course Service API - Suite de Pruebas",
+    "description": "Colección empresarial completa para el microservicio Course Service. Incluye 30+ endpoints con casos de prueba positivos/negativos, validaciones automatizadas, tests de rendimiento y manejo de errores. Diseñada para QA y DevOps.",
     "version": "2.0.0",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "🏥 Health Check & Monitoring",
+      "name": "🏥 Monitoreo de Salud",
       "description": "Endpoints para monitorear la salud del microservicio y la base de datos",
       "item": [
         {
-          "name": "📊 Service Health Status",
+          "name": "📊 Estado del Servicio",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Service is UP', function () {",
+                  "pm.test('El servicio está funcionando', function () {",
                   "    pm.response.to.have.status(200);",
                   "    const response = pm.response.json();",
                   "    pm.expect(response.status).to.eql('UP');",
@@ -36,13 +36,13 @@
           }
         },
         {
-          "name": "🗄️ Database Health Check",
+          "name": "🗄️ Estado de la Base de Datos",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Database is connected', function () {",
+                  "pm.test('Base de datos conectada', function () {",
                   "    pm.response.to.have.status(200);",
                   "    const response = pm.response.json();",
                   "    pm.expect(response.status).to.eql('UP');",
@@ -64,17 +64,17 @@
       ]
     },
     {
-      "name": "🏷️ Categories Management",
+      "name": "🏷️ Gestión de Categorías",
       "description": "Gestión completa de categorías con validaciones",
       "item": [
         {
-          "name": "📋 Get All Categories",
+          "name": "📋 Listar Todas las Categorías",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Categories retrieved successfully', function () {",
+                  "pm.test('Categorías obtenidas exitosamente', function () {",
                   "    pm.response.to.have.status(200);",
                   "    const response = pm.response.json();",
                   "    pm.expect(response).to.be.an('array');",
@@ -97,13 +97,13 @@
           }
         },
         {
-          "name": "🔍 Get Category by ID",
+          "name": "🔍 Obtener Categoría por ID",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Category retrieved by ID', function () {",
+                  "pm.test('Categoría obtenida por ID exitosamente', function () {",
                   "    pm.response.to.have.status(200);",
                   "    const response = pm.response.json();",
                   "    pm.expect(response).to.have.property('id', 1);",
@@ -123,13 +123,13 @@
           }
         },
         {
-          "name": "🏷️ Get Category by Name",
+          "name": "🏷️ Obtener Categoría por Nombre",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Category retrieved by name', function () {",
+                  "pm.test('Categoría obtenida por nombre exitosamente', function () {",
                   "    pm.response.to.have.status(200);",
                   "    const response = pm.response.json();",
                   "    pm.expect(response).to.have.property('name', 'Programación');",
@@ -147,7 +147,7 @@
           }
         },
         {
-          "name": "✅ Check Category Name Exists",
+          "name": "✅ Verificar Existencia de Nombre de Categoría",
           "event": [
             {
               "listen": "test",
@@ -171,7 +171,7 @@
           }
         },
         {
-          "name": "➕ Create New Category",
+          "name": "➕ Crear Nueva Categoría",
           "event": [
             {
               "listen": "test",
@@ -209,7 +209,7 @@
           }
         },
         {
-          "name": "❌ Create Category - Duplicate Name (Error Test)",
+          "name": "❌ Crear Categoría - Nombre Duplicado (Test de Error)",
           "event": [
             {
               "listen": "test",
@@ -242,7 +242,7 @@
           }
         },
         {
-          "name": "❌ Create Category - Invalid Data (Error Test)",
+          "name": "❌ Crear Categoría - Datos Inválidos (Test de Error)",
           "event": [
             {
               "listen": "test",
@@ -273,7 +273,7 @@
           }
         },
         {
-          "name": "✏️ Update Category",
+          "name": "✏️ Actualizar Categoría",
           "event": [
             {
               "listen": "test",
@@ -307,7 +307,7 @@
           }
         },
         {
-          "name": "🗑️ Delete Category",
+          "name": "🗑️ Eliminar Categoría",
           "event": [
             {
               "listen": "test",
@@ -331,11 +331,11 @@
       ]
     },
     {
-      "name": "📚 Courses Management",
+      "name": "📚 Gestión de Cursos",
       "description": "Gestión completa de cursos con todas las funcionalidades",
       "item": [
         {
-          "name": "📚 Get All Courses",
+          "name": "📚 Listar Todos los Cursos",
           "event": [
             {
               "listen": "test",
@@ -366,7 +366,7 @@
           }
         },
         {
-          "name": "📄 Get Courses Paginated",
+          "name": "📄 Obtener Cursos Paginados",
           "event": [
             {
               "listen": "test",
@@ -411,7 +411,7 @@
           }
         },
         {
-          "name": "🔍 Get Course by ID",
+          "name": "🔍 Obtener Curso por ID",
           "event": [
             {
               "listen": "test",
@@ -437,7 +437,7 @@
           }
         },
         {
-          "name": "🏷️ Get Courses by Category",
+          "name": "🏷️ Obtener Cursos por Categoría",
           "event": [
             {
               "listen": "test",
@@ -464,7 +464,7 @@
           }
         },
         {
-          "name": "👨‍🏫 Get Courses by Instructor",
+          "name": "👨‍🏫 Obtener Cursos por Instructor",
           "request": {
             "method": "GET",
             "header": [],
@@ -473,7 +473,7 @@
           }
         },
         {
-          "name": "📊 Get Courses by Level",
+          "name": "📊 Obtener Cursos por Nivel",
           "event": [
             {
               "listen": "test",
@@ -500,7 +500,7 @@
           }
         },
         {
-          "name": "⭐ Get Featured Courses",
+          "name": "⭐ Obtener Cursos Destacados",
           "event": [
             {
               "listen": "test",
@@ -527,7 +527,7 @@
           }
         },
         {
-          "name": "💎 Get Premium Courses",
+          "name": "💎 Obtener Cursos Premium",
           "event": [
             {
               "listen": "test",
@@ -554,7 +554,7 @@
           }
         },
         {
-          "name": "🔍 Search Courses by Keyword",
+          "name": "🔍 Buscar Cursos por Palabra Clave",
           "event": [
             {
               "listen": "test",
@@ -603,7 +603,7 @@
           }
         },
         {
-          "name": "➕ Create New Course",
+          "name": "➕ Crear Nuevo Curso",
           "event": [
             {
               "listen": "test",
@@ -642,7 +642,7 @@
           }
         },
         {
-          "name": "❌ Create Course - Invalid Data (Error Test)",
+          "name": "❌ Crear Curso - Datos Inválidos (Test de Error)",
           "event": [
             {
               "listen": "test",
@@ -673,7 +673,7 @@
           }
         },
         {
-          "name": "✏️ Update Course",
+          "name": "✏️ Actualizar Curso",
           "event": [
             {
               "listen": "test",
@@ -707,7 +707,7 @@
           }
         },
         {
-          "name": "📢 Publish Course",
+          "name": "📢 Publicar Curso",
           "event": [
             {
               "listen": "test",
@@ -732,7 +732,7 @@
           }
         },
         {
-          "name": "📦 Archive Course",
+          "name": "📦 Archivar Curso",
           "event": [
             {
               "listen": "test",
@@ -756,7 +756,7 @@
           }
         },
         {
-          "name": "🗑️ Delete Course",
+          "name": "🗑️ Eliminar Curso",
           "event": [
             {
               "listen": "test",
@@ -784,7 +784,7 @@
       "description": "Pruebas de manejo de errores y casos edge",
       "item": [
         {
-          "name": "🔍 Get Non-existent Category",
+          "name": "🔍 Obtener Categoría Inexistente",
           "event": [
             {
               "listen": "test",
@@ -809,7 +809,7 @@
           }
         },
         {
-          "name": "🔍 Get Non-existent Course",
+          "name": "🔍 Obtener Curso Inexistente",
           "event": [
             {
               "listen": "test",
@@ -833,7 +833,7 @@
           }
         },
         {
-          "name": "❌ Delete Category with Courses",
+          "name": "❌ Eliminar Categoría con Cursos",
           "event": [
             {
               "listen": "test",
@@ -857,7 +857,7 @@
           }
         },
         {
-          "name": "❌ Invalid JSON Format",
+          "name": "❌ Formato JSON Inválido",
           "event": [
             {
               "listen": "test",
@@ -890,11 +890,11 @@
       ]
     },
     {
-      "name": "🧪 Performance & Load Tests",
+      "name": "🧪 Pruebas de Rendimiento y Carga",
       "description": "Pruebas de rendimiento y carga",
       "item": [
         {
-          "name": "⚡ Load Test - Get All Categories",
+          "name": "⚡ Test de Carga - Obtener Todas las Categorías",
           "event": [
             {
               "listen": "test",
@@ -920,7 +920,7 @@
           }
         },
         {
-          "name": "⚡ Load Test - Search Courses",
+          "name": "⚡ Test de Carga - Búsqueda de Cursos",
           "event": [
             {
               "listen": "test",
@@ -966,11 +966,11 @@
       ]
     },
     {
-      "name": "🔄 Integration & Workflow Tests",
+      "name": "🔄 Pruebas de Integración y Flujos de Trabajo",
       "description": "Pruebas de flujos completos e integración",
       "item": [
         {
-          "name": "🎯 Complete Course Lifecycle",
+          "name": "🎯 Ciclo de Vida Completo del Curso",
           "event": [
             {
               "listen": "prerequest",
@@ -1013,7 +1013,7 @@
           }
         },
         {
-          "name": "🔄 Database Consistency Check",
+          "name": "🔄 Verificación de Consistencia de Base de Datos",
           "event": [
             {
               "listen": "test",
@@ -1045,11 +1045,11 @@
       ]
     },
     {
-      "name": "🔐 Security & Validation Tests",
+      "name": "🔐 Pruebas de Seguridad y Validación",
       "description": "Pruebas de seguridad y validación avanzada",
       "item": [
         {
-          "name": "🚫 SQL Injection Prevention",
+          "name": "🚫 Prevención de Inyección SQL",
           "event": [
             {
               "listen": "test",
@@ -1078,7 +1078,7 @@
           }
         },
         {
-          "name": "🛡️ Input Validation - XSS Prevention",
+          "name": "🛡️ Validación de Entrada - Prevención XSS",
           "event": [
             {
               "listen": "test",
@@ -1115,7 +1115,7 @@
           }
         },
         {
-          "name": "📊 Large Payload Test",
+          "name": "📊 Test de Payload Grande",
           "event": [
             {
               "listen": "test",

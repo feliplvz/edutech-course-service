@@ -10,7 +10,7 @@
 
 **🎯 Guía Empresarial de Testing para Microservicio Course Service**
 
-*Desarrollado por **Felipe López** para la excelencia en testing de APIs empresariales* 🌟
+*Desarrollado por **Felipe López** 🌟
 
 </div>
 
@@ -513,7 +513,7 @@ pm.test('Test description', function () {
 
 **🌟 ¡Gracias por usar la Guía de Testing de EduTech Course Service! 🌟**
 
-*Desarrollado con ❤️ por **Felipe López** para la excelencia en testing de APIs empresariales*
+*Desarrollado por **Felipe López***
 
 Para más información sobre el microservicio, consulta la [documentación completa del README](./README.md)
 
