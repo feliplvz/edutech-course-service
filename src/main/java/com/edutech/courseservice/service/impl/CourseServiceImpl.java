@@ -6,7 +6,6 @@ import com.edutech.courseservice.model.Category;
 import com.edutech.courseservice.model.Course;
 import com.edutech.courseservice.repository.CategoryRepository;
 import com.edutech.courseservice.repository.CourseRepository;
-import com.edutech.courseservice.repository.ModuleRepository;
 import com.edutech.courseservice.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,15 +22,12 @@ public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
     private final CategoryRepository categoryRepository;
-    private final ModuleRepository moduleRepository;
-
+    
     @Autowired
     public CourseServiceImpl(CourseRepository courseRepository,
-                           CategoryRepository categoryRepository,
-                           ModuleRepository moduleRepository) {
+                           CategoryRepository categoryRepository) {
         this.courseRepository = courseRepository;
         this.categoryRepository = categoryRepository;
-        this.moduleRepository = moduleRepository;
     }
 
     @Override
