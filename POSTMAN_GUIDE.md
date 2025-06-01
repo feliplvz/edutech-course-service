@@ -4,11 +4,13 @@
 
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.java.net/projects/jdk/17/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Postman](https://img.shields.io/badge/Postman-35%2B%20Tests-orange.svg)](./postman-collection.json)
+[![Postman](https://img.shields.io/badge/Postman-37%2B%20Tests-orange.svg)](./postman-collection.json)
 [![Status](https://img.shields.io/badge/Status-✅%20Verified-success.svg)](http://localhost:8082/)
 [![Tests](https://img.shields.io/badge/Tests-✅%20Passed-success.svg)](./postman-collection.json)
 
 **🎯 Guía Empresarial de Testing para Microservicio Course Service**
+
+*Colección con 37+ tests automatizados*
 
 *Desarrollado por **Felipe López** 🌟
 
@@ -18,7 +20,7 @@
 
 ## 🎯 Descripción
 
-Esta **guía de testing empresarial** documenta la colección completa de Postman con **35+ requests profesionales** para validar el microservicio Course Service de EduTech. Incluye casos de prueba positivos, negativos, tests de seguridad, performance y flujos de integración completos.
+Esta **guía de testing empresarial** documenta la colección completa de Postman con **37+ requests profesionales** para validar el microservicio Course Service de EduTech. Incluye casos de prueba positivos, negativos, tests de seguridad, performance y flujos de integración completos. **Completamente traducida al español** con emojis profesionales para equipos de desarrollo hispanohablantes.
 
 ### 🎯 Propósito de la Guía
 
@@ -29,7 +31,7 @@ Esta **guía de testing empresarial** documenta la colección completa de Postma
 
 ### 📊 Estadísticas de Testing
 
-- ✅ **35+ Requests** completamente validados
+- ✅ **37+ Requests** completamente validados
 - ✅ **15+ Endpoints** con cobertura 100%
 - ✅ **7 Categorías** de testing organizadas
 - ✅ **100% Automatización** con validaciones
@@ -47,10 +49,11 @@ Esta **guía de testing empresarial** documenta la colección completa de Postma
 - **🎯 Variables Dinámicas**: Gestión automática de IDs y datos de prueba
 
 ### 🛠️ Características Técnicas
-- **🏥 Health Monitoring**: Tests de monitoreo de salud del servicio y BD
-- **🛡️ Security Testing**: Validación contra SQL injection, XSS y ataques comunes
-- **⚡ Performance Testing**: Tests de tiempo de respuesta y carga
-- **❌ Error Handling**: Validación de manejo de errores y casos edge
+- **🏥 Monitoreo de Salud**: Tests de monitoreo de salud del servicio y BD
+- **🛡️ Testing de Seguridad**: Validación contra SQL injection, XSS y ataques comunes
+- **⚡ Testing de Performance**: Tests de tiempo de respuesta y carga
+- **❌ Manejo de Errores**: Validación de manejo de errores y casos edge
+- **🎯 Emojis Profesionales**: Identificación visual clara de cada tipo de test
 
 ### 🚀 Infraestructura de Testing
 - **📋 Postman Collection**: Archivo JSON completamente configurado
@@ -62,61 +65,62 @@ Esta **guía de testing empresarial** documenta la colección completa de Postma
 
 ## 🗂️ Estructura de la Colección
 
-### 🏥 1. Health Check & Monitoring (2 Requests)
-- **🔍 Service Health Status**: Verificar estado general del microservicio
-- **🗄️ Database Health Check**: Comprobar conexión a PostgreSQL en Railway
+### 🏥 1. Monitoreo de Salud (2 Requests)
+- **📊 Estado del Servicio**: Verificar estado general del microservicio
+- **🗄️ Estado de la Base de Datos**: Comprobar conexión a PostgreSQL en Railway
 
-### 🏷️ 2. Categories Management (9 Requests)
-- **📋 Get All Categories**: Listar todas las categorías con contador de cursos
-- **🔍 Get Category by ID**: Obtener categoría específica por ID
-- **🔤 Get Category by Name**: Buscar categoría por nombre exacto
-- **✅ Check Category Name Exists**: Verificar existencia de nombre
-- **➕ Create New Category**: Crear categoría con validaciones completas
-- **❌ Create Category - Duplicate Name**: Test de error para nombres duplicados
-- **🚫 Create Category - Invalid Data**: Test de validación de datos
-- **✏️ Update Category**: Actualizar categoría existente
-- **🗑️ Delete Category**: Eliminar categoría con validación automática
+### 🏷️ 2. Gestión de Categorías (9 Requests)
+- **📋 Listar Todas las Categorías**: Listar todas las categorías con contador de cursos
+- **🔍 Obtener Categoría por ID**: Obtener categoría específica por ID
+- **🏷️ Obtener Categoría por Nombre**: Buscar categoría por nombre exacto
+- **✅ Verificar Existencia de Nombre de Categoría**: Verificar existencia de nombre
+- **➕ Crear Nueva Categoría**: Crear categoría con validaciones completas
+- **❌ Crear Categoría - Nombre Duplicado**: Test de error para nombres duplicados
+- **❌ Crear Categoría - Datos Inválidos**: Test de validación de datos
+- **✏️ Actualizar Categoría**: Actualizar categoría existente
+- **🗑️ Eliminar Categoría**: Eliminar categoría con validación automática
 
-### 📚 3. Courses Management (15 Requests)
-- **📋 Get All Courses**: Listar todos los cursos disponibles
-- **📄 Get Courses Paginated**: Paginación avanzada con ordenamiento
-- **🔍 Get Course by ID**: Obtener curso específico por ID
-- **🏷️ Get Courses by Category**: Filtrar cursos por categoría
-- **👨‍🏫 Get Courses by Instructor**: Filtrar cursos por instructor
-- **📊 Get Courses by Level**: Filtrar por nivel de dificultad
-- **⭐ Get Featured Courses**: Obtener cursos destacados
-- **💎 Get Premium Courses**: Obtener cursos premium
-- **🔍 Search Courses**: Búsqueda inteligente con paginación
-- **➕ Create New Course**: Crear curso completo con validaciones
-- **🚫 Create Course - Invalid Data**: Test de validación de datos
-- **✏️ Update Course**: Actualizar curso existente completo
-- **📤 Publish Course**: Cambiar estado a PUBLISHED
-- **📦 Archive Course**: Cambiar estado a ARCHIVED
-- **🗑️ Delete Course**: Eliminar curso con validaciones
+### 📚 3. Gestión de Cursos (15 Requests)
+- **📚 Listar Todos los Cursos**: Listar todos los cursos disponibles
+- **📄 Obtener Cursos Paginados**: Paginación avanzada con ordenamiento
+- **🔍 Obtener Curso por ID**: Obtener curso específico por ID
+- **🏷️ Obtener Cursos por Categoría**: Filtrar cursos por categoría
+- **👨‍🏫 Obtener Cursos por Instructor**: Filtrar cursos por instructor
+- **📊 Obtener Cursos por Nivel**: Filtrar por nivel de dificultad
+- **⭐ Obtener Cursos Destacados**: Obtener cursos destacados
+- **💎 Obtener Cursos Premium**: Obtener cursos premium
+- **🔍 Buscar Cursos por Palabra Clave**: Búsqueda inteligente con paginación
+- **➕ Crear Nuevo Curso**: Crear curso completo con validaciones
+- **❌ Crear Curso - Datos Inválidos**: Test de validación de datos
+- **✏️ Actualizar Curso**: Actualizar curso existente completo
+- **📢 Publicar Curso**: Cambiar estado a PUBLISHED
+- **📦 Archivar Curso**: Cambiar estado a ARCHIVED
+- **🗑️ Eliminar Curso**: Eliminar curso con validaciones
 
-### ❌ 4. Error Handling Tests (4 Requests)
-- **🚫 Get Non-existent Category**: Test 404 para categoría inexistente
-- **🚫 Get Non-existent Course**: Test 404 para curso inexistente
-- **⚠️ Delete Category with Courses**: Test de restricción de integridad
-- **🔧 Invalid JSON Format**: Test de JSON malformado
+### ❌ 4. Pruebas de Manejo de Errores (4 Requests)
+- **🔍 Obtener Categoría Inexistente**: Test 404 para categoría inexistente
+- **🔍 Obtener Curso Inexistente**: Test 404 para curso inexistente
+- **❌ Eliminar Categoría con Cursos**: Test de restricción de integridad
+- **❌ Formato JSON Inválido**: Test de JSON malformado
 
-### 🧪 5. Performance & Load Tests (2 Requests)
-- **⚡ Load Test - Get All Categories**: Test de tiempo de respuesta
-- **🔍 Load Test - Search Courses**: Test de performance de búsqueda
+### 🧪 5. Pruebas de Rendimiento y Carga (2 Requests)
+- **⚡ Test de Carga - Obtener Todas las Categorías**: Test de tiempo de respuesta
+- **⚡ Test de Carga - Búsqueda de Cursos**: Test de performance de búsqueda
 
-### 🔄 6. Integration & Workflow Tests (1 Request)
-- **🔄 Complete Course Lifecycle**: Flujo completo de CRUD empresarial
+### 🔄 6. Pruebas de Integración y Flujos de Trabajo (2 Requests)
+- **🎯 Ciclo de Vida Completo del Curso**: Flujo completo de CRUD empresarial
+- **🔄 Verificación de Consistencia de Base de Datos**: Verificar integridad de datos
 
-### 🔐 7. Security & Validation Tests (3 Requests)
-- **🛡️ SQL Injection Prevention**: Test de seguridad contra SQL injection
-- **🚫 XSS Prevention**: Test de prevención de Cross-Site Scripting
-- **📦 Large Payload Test**: Test de manejo de payloads grandes
+### 🔐 7. Pruebas de Seguridad y Validación (3 Requests)
+- **🚫 Prevención de Inyección SQL**: Test de seguridad contra SQL injection
+- **🛡️ Validación de Entrada - Prevención XSS**: Test de prevención de Cross-Site Scripting
+- **📊 Test de Payload Grande**: Test de manejo de payloads grandes
 
 ---
 
 ## 📊 Endpoints Cubiertos (100% Cobertura)
 
-### 🏥 Health Check & Monitoring
+### 🏥 Monitoreo de Salud
 
 | Método | Endpoint | Descripción | Respuesta Esperada |
 |--------|----------|-------------|--------------------|
@@ -204,14 +208,14 @@ curl http://localhost:8082/health
 #### 3. Ejecución de Pruebas Empresariales
 
 ##### 🎯 Ejecutar Suite Completa (Recomendado para QA)
-1. Hacer clic derecho en "Course Service API Collection"
+1. Hacer clic derecho en "🎓 Course Service API - Suite de Pruebas"
 2. Seleccionar "Run collection"
 3. Configurar:
    - **Iterations**: 1 (para testing funcional)
    - **Delay**: 100ms (para evitar sobrecarga)
    - **Data**: Ninguno (usa variables predefinidas)
 4. Hacer clic en "Run Course Service API"
-5. **Resultado Esperado**: 35+ tests pasando exitosamente
+5. **Resultado Esperado**: 37+ tests pasando exitosamente
 
 ##### 🏢 Ejecutar por Categorías Específicas
 - **🚀 Para Desarrollo (Dev)**: Health Check + Categories Management
@@ -236,29 +240,29 @@ Cada request incluye **scripts de validación automática** que verifican:
 
 ### 🎯 Scripts de Validación por Categoría
 
-#### 🏥 Health Check Tests
+#### 🏥 Tests de Monitoreo de Salud
 - Verificación de estado `UP` del microservicio
 - Validación de conexión exitosa a PostgreSQL
 - Control de tiempo de respuesta < 500ms
 
-#### 🏷️ Categories Management Tests  
+#### 🏷️ Tests de Gestión de Categorías  
 - Validación de estructura CategoryDTO completa
 - Verificación de contador de cursos automático
 - Tests de duplicación de nombres (409 Conflict)
 - Validación de eliminación con restricciones de integridad
 
-#### 📚 Courses Management Tests
+#### 📚 Tests de Gestión de Cursos
 - Validación de estructura CourseDTO con todas las propiedades
 - Tests de estados (DRAFT, PUBLISHED, ARCHIVED)
 - Verificación de campos featured y premium
 - Validación de relaciones con categorías
 
-#### ❌ Error Handling Tests
+#### ❌ Tests de Manejo de Errores
 - Validación de responses 404 con mensajes descriptivos
 - Tests de JSON malformado (400 Bad Request)
 - Verificación de restricciones de base de datos
 
-#### 🔐 Security & Performance Tests
+#### 🔐 Tests de Seguridad y Performance
 - Validación contra SQL Injection attempts
 - Tests de XSS prevention en campos de texto
 - Control de performance con payloads grandes
@@ -272,9 +276,9 @@ Cada request incluye **scripts de validación automática** que verifican:
 ```bash
 # Ejecutar tests básicos de funcionalidad diaria
 Carpetas recomendadas:
-✅ Health Check & Monitoring
-✅ Categories Management (CRUD básico)
-✅ Courses Management (funcionalidades core)
+✅ Monitoreo de Salud
+✅ Gestión de Categorías (CRUD básico)
+✅ Gestión de Cursos (funcionalidades core)
 
 Tiempo estimado: 3-5 minutos
 ```
@@ -283,9 +287,9 @@ Tiempo estimado: 3-5 minutos
 ```bash
 # Ejecutar suite completa incluyendo edge cases
 Carpetas recomendadas:
-✅ Toda la colección (35+ requests)
-✅ Enfoque especial en Error Handling Tests
-✅ Security & Validation Tests completos
+✅ Toda la colección (37+ requests)
+✅ Enfoque especial en Pruebas de Manejo de Errores
+✅ Pruebas de Seguridad y Validación completas
 
 Tiempo estimado: 8-12 minutos
 ```
@@ -294,9 +298,9 @@ Tiempo estimado: 8-12 minutos
 ```bash
 # Ejecutar tests de health check y performance
 Carpetas recomendadas:
-✅ Health Check & Monitoring
-✅ Performance & Load Tests
-✅ Integration & Workflow Tests
+✅ Monitoreo de Salud
+✅ Pruebas de Rendimiento y Carga
+✅ Pruebas de Integración y Flujos de Trabajo
 
 Tiempo estimado: 2-3 minutos
 ```
@@ -305,8 +309,8 @@ Tiempo estimado: 2-3 minutos
 ```bash
 # Ejecutar flujos completos end-to-end
 Carpetas recomendadas:
-✅ Complete Course Lifecycle
-✅ Integration & Workflow Tests
+✅ Ciclo de Vida Completo del Curso
+✅ Pruebas de Integración y Flujos de Trabajo
 ✅ Validación de dependencias entre módulos
 
 Tiempo estimado: 5-7 minutos
@@ -449,7 +453,7 @@ La colección está diseñada para mantener estos estándares empresariales:
 - **Alertas**: Fallos en health checks o operaciones core
 
 #### 🧪 Para Entornos de QA/Staging  
-- **Ejecución por deployment**: Suite completa (35+ tests)
+- **Ejecución por deployment**: Suite completa (37+ tests)
 - **Tiempo objetivo**: < 15 minutos incluyendo tests de carga
 - **Alertas**: Cualquier fallo en validaciones o performance
 
@@ -518,7 +522,7 @@ pm.test('Test description', function () {
 Para más información sobre el microservicio, consulta la [documentación completa del README](./README.md)
 
 [![API Status](https://img.shields.io/badge/API-Online-brightgreen.svg)](http://localhost:8082/)
-[![Collection](https://img.shields.io/badge/Postman-35%2B%20Tests-orange.svg)](./postman-collection.json)
+[![Collection](https://img.shields.io/badge/Postman-37%2B%20Tests-orange.svg)](./postman-collection.json)
 [![Documentation](https://img.shields.io/badge/Docs-Complete-blue.svg)](./README.md)
 [![Last Updated](https://img.shields.io/badge/Updated-Junio%202025-blue.svg)](https://github.com/feliplvz/course-service)
 [![Developer](https://img.shields.io/badge/Developer-Felipe%20López-purple.svg)](https://github.com/feliplvz)
