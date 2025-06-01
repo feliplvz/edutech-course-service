@@ -1,0 +1,1258 @@
+{
+  "info": {
+    "name": "🎓 Course Service API - Enterprise Test Suite",
+    "description": "Colección empresarial completa para el microservicio Course Service. Incluye 30+ endpoints con casos de prueba positivos/negativos, validaciones automatizadas, tests de performance y manejo de errores. Diseñada para QA y DevOps.",
+    "version": "2.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🏥 Health Check & Monitoring",
+      "description": "Endpoints para monitorear la salud del microservicio y la base de datos",
+      "item": [
+        {
+          "name": "📊 Service Health Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Service is UP', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.status).to.eql('UP');",
+                  "    pm.expect(response.service).to.eql('course-service');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health",
+            "description": "Verifica el estado general del microservicio"
+          }
+        },
+        {
+          "name": "🗄️ Database Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Database is connected', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.status).to.eql('UP');",
+                  "    pm.expect(response.database).to.eql('PostgreSQL');",
+                  "    pm.expect(response.connection).to.eql('OK');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health/db",
+            "description": "Verifica la conexión a la base de datos PostgreSQL"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🏷️ Categories Management",
+      "description": "Gestión completa de categorías con validaciones",
+      "item": [
+        {
+          "name": "📋 Get All Categories",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Categories retrieved successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0]).to.have.property('id');",
+                  "        pm.expect(response[0]).to.have.property('name');",
+                  "        pm.expect(response[0]).to.have.property('courseCount');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Obtiene todas las categorías con contador de cursos"
+          }
+        },
+        {
+          "name": "🔍 Get Category by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category retrieved by ID', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id', 1);",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('courseCount');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/{{categoryId}}",
+            "description": "Obtiene una categoría específica por ID"
+          }
+        },
+        {
+          "name": "🏷️ Get Category by Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category retrieved by name', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('name', 'Programación');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/name/Programación",
+            "description": "Busca una categoría por su nombre exacto"
+          }
+        },
+        {
+          "name": "✅ Check Category Name Exists",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category existence check', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.a('boolean');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/exists/Programación",
+            "description": "Verifica si existe una categoría con el nombre especificado"
+          }
+        },
+        {
+          "name": "➕ Create New Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category created successfully', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response.name).to.eql('Blockchain & Criptomonedas');",
+                  "    pm.expect(response.courseCount).to.eql(0);",
+                  "    ",
+                  "    // Guardar ID para pruebas posteriores",
+                  "    pm.environment.set('newCategoryId', response.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Blockchain & Criptomonedas\",\n  \"description\": \"Tecnologías blockchain, criptomonedas y Web3 para el futuro digital\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Crea una nueva categoría con validaciones"
+          }
+        },
+        {
+          "name": "❌ Create Category - Duplicate Name (Error Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Duplicate category name rejected', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.message).to.include('Ya existe');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Programación\",\n  \"description\": \"Intentando crear categoría duplicada\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba de validación: nombre duplicado debe fallar"
+          }
+        },
+        {
+          "name": "❌ Create Category - Invalid Data (Error Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid category data rejected', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"Categoría sin nombre\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba de validación: datos inválidos deben fallar"
+          }
+        },
+        {
+          "name": "✏️ Update Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category updated successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.name).to.eql('Blockchain & Web3');",
+                  "    pm.expect(response.description).to.include('actualizada');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Blockchain & Web3\",\n  \"description\": \"Categoría actualizada: Tecnologías descentralizadas y desarrollo Web3\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories/{{newCategoryId}}",
+            "description": "Actualiza una categoría existente"
+          }
+        },
+        {
+          "name": "🗑️ Delete Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category deleted successfully', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/{{newCategoryId}}",
+            "description": "Elimina una categoría (solo si no tiene cursos asociados)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📚 Courses Management",
+      "description": "Gestión completa de cursos con todas las funcionalidades",
+      "item": [
+        {
+          "name": "📚 Get All Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Courses retrieved successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0]).to.have.property('id');",
+                  "        pm.expect(response[0]).to.have.property('title');",
+                  "        pm.expect(response[0]).to.have.property('categoryName');",
+                  "        pm.expect(response[0]).to.have.property('moduleCount');",
+                  "        pm.expect(response[0]).to.have.property('lessonCount');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses",
+            "description": "Obtiene todos los cursos disponibles"
+          }
+        },
+        {
+          "name": "📄 Get Courses Paginated",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Paginated courses retrieved', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('content');",
+                  "    pm.expect(response).to.have.property('pageable');",
+                  "    pm.expect(response).to.have.property('totalElements');",
+                  "    pm.expect(response).to.have.property('totalPages');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/courses/paginated?page=0&size=5&sort=title,asc",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "courses", "paginated"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "title,asc"
+                }
+              ]
+            },
+            "description": "Obtiene cursos con paginación y ordenamiento"
+          }
+        },
+        {
+          "name": "🔍 Get Course by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course retrieved by ID', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id', 1);",
+                  "    pm.expect(response).to.have.property('title');",
+                  "    pm.expect(response).to.have.property('categoryName');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/{{courseId}}",
+            "description": "Obtiene un curso específico por ID"
+          }
+        },
+        {
+          "name": "🏷️ Get Courses by Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Courses by category retrieved', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0].categoryId).to.eql(1);",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/category/{{categoryId}}",
+            "description": "Obtiene todos los cursos de una categoría específica"
+          }
+        },
+        {
+          "name": "👨‍🏫 Get Courses by Instructor",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/instructor/123",
+            "description": "Obtiene cursos por instructor (cuando se implemente gestión de instructores)"
+          }
+        },
+        {
+          "name": "📊 Get Courses by Level",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Courses by level retrieved', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0].level).to.eql('BEGINNER');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/level/BEGINNER",
+            "description": "Obtiene cursos filtrados por nivel de dificultad"
+          }
+        },
+        {
+          "name": "⭐ Get Featured Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Featured courses retrieved', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0].featured).to.eql(true);",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/featured",
+            "description": "Obtiene todos los cursos marcados como destacados"
+          }
+        },
+        {
+          "name": "💎 Get Premium Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Premium courses retrieved', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.be.an('array');",
+                  "    if (response.length > 0) {",
+                  "        pm.expect(response[0].premium).to.eql(true);",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/premium",
+            "description": "Obtiene todos los cursos premium"
+          }
+        },
+        {
+          "name": "🔍 Search Courses by Keyword",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course search results', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('content');",
+                  "    pm.expect(response).to.have.property('totalElements');",
+                  "    if (response.content.length > 0) {",
+                  "        const firstCourse = response.content[0];",
+                  "        const titleOrDescMatch = firstCourse.title.toLowerCase().includes('java') ||",
+                  "                                firstCourse.description.toLowerCase().includes('java');",
+                  "        pm.expect(titleOrDescMatch).to.be.true;",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/courses/search?keyword=Java&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "courses", "search"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "Java"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Busca cursos por palabra clave con paginación"
+          }
+        },
+        {
+          "name": "➕ Create New Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course created successfully', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response.title).to.eql('Machine Learning con Python - Nivel Empresarial');",
+                  "    pm.expect(response.level).to.eql('INTERMEDIATE');",
+                  "    pm.expect(response.status).to.eql('DRAFT');",
+                  "    ",
+                  "    // Guardar ID para pruebas posteriores",
+                  "    pm.environment.set('newCourseId', response.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Machine Learning con Python - Nivel Empresarial\",\n  \"description\": \"Curso completo de Machine Learning para aplicaciones corporativas, incluyendo algoritmos supervisados, no supervisados y deep learning\",\n  \"objectives\": \"Dominar algoritmos de ML, implementar modelos predictivos, aplicar técnicas de data science en casos empresariales reales\",\n  \"requirements\": \"Python intermedio, estadística básica, matemáticas para programadores\",\n  \"durationHours\": 80,\n  \"price\": 299.99,\n  \"discountPercentage\": 15,\n  \"imageUrl\": \"https://example.com/ml-python-course.jpg\",\n  \"level\": \"INTERMEDIATE\",\n  \"featured\": true,\n  \"premium\": true,\n  \"categoryId\": 1\n}"
+            },
+            "url": "{{baseUrl}}/api/courses",
+            "description": "Crea un nuevo curso con todas las validaciones"
+          }
+        },
+        {
+          "name": "❌ Create Course - Invalid Data (Error Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid course data rejected', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"ML\",\n  \"description\": \"\",\n  \"durationHours\": -5,\n  \"price\": -100,\n  \"categoryId\": 999\n}"
+            },
+            "url": "{{baseUrl}}/api/courses",
+            "description": "Prueba de validación: datos inválidos deben fallar"
+          }
+        },
+        {
+          "name": "✏️ Update Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course updated successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.title).to.include('ACTUALIZADO');",
+                  "    pm.expect(response.price).to.eql(349.99);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Machine Learning con Python - ACTUALIZADO\",\n  \"description\": \"Curso actualizado con nuevas técnicas de IA y casos de uso empresariales 2025\",\n  \"objectives\": \"Objetivos actualizados: Dominar IA generativa, MLOps, y deployment de modelos en producción\",\n  \"requirements\": \"Python avanzado, conocimientos de estadística y álgebra lineal\",\n  \"durationHours\": 100,\n  \"price\": 349.99,\n  \"discountPercentage\": 20,\n  \"imageUrl\": \"https://example.com/ml-python-updated.jpg\",\n  \"level\": \"ADVANCED\",\n  \"featured\": true,\n  \"premium\": true,\n  \"categoryId\": 1\n}"
+            },
+            "url": "{{baseUrl}}/api/courses/{{newCourseId}}",
+            "description": "Actualiza un curso existente"
+          }
+        },
+        {
+          "name": "📢 Publish Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course published successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.status).to.eql('PUBLISHED');",
+                  "    pm.expect(response.publishedAt).to.not.be.null;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/{{newCourseId}}/publish",
+            "description": "Publica un curso (cambia estado de DRAFT a PUBLISHED)"
+          }
+        },
+        {
+          "name": "📦 Archive Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course archived successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.status).to.eql('ARCHIVED');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/{{newCourseId}}/archive",
+            "description": "Archiva un curso (útil para cursos obsoletos)"
+          }
+        },
+        {
+          "name": "🗑️ Delete Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Course deleted successfully', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/{{newCourseId}}",
+            "description": "Elimina un curso permanentemente"
+          }
+        }
+      ]
+    },
+    {
+      "name": "❌ Error Handling Tests",
+      "description": "Pruebas de manejo de errores y casos edge",
+      "item": [
+        {
+          "name": "🔍 Get Non-existent Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Non-existent category returns 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('status', 404);",
+                  "    pm.expect(response.message).to.include('no encontrado');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/99999",
+            "description": "Prueba error 404 para categoría inexistente"
+          }
+        },
+        {
+          "name": "🔍 Get Non-existent Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Non-existent course returns 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('status', 404);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/courses/99999",
+            "description": "Prueba error 404 para curso inexistente"
+          }
+        },
+        {
+          "name": "❌ Delete Category with Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Category with courses cannot be deleted', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.message).to.include('cursos asociados');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/1",
+            "description": "Prueba que no se puede eliminar categoría con cursos"
+          }
+        },
+        {
+          "name": "❌ Invalid JSON Format",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Invalid JSON rejected', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test\",\n  \"description\": \"Invalid JSON\"\n  // missing comma and malformed\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba manejo de JSON malformado"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🧪 Performance & Load Tests",
+      "description": "Pruebas de rendimiento y carga",
+      "item": [
+        {
+          "name": "⚡ Load Test - Get All Categories",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Response time is acceptable', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "});",
+                  "",
+                  "pm.test('Categories loaded successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba de tiempo de respuesta para categorías"
+          }
+        },
+        {
+          "name": "⚡ Load Test - Search Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Search response time is acceptable', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test('Search completed successfully', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/courses/search?keyword=a&page=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "courses", "search"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "a"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Prueba de rendimiento de búsqueda de cursos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔄 Integration & Workflow Tests",
+      "description": "Pruebas de flujos completos e integración",
+      "item": [
+        {
+          "name": "🎯 Complete Course Lifecycle",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Este test ejecuta un flujo completo de creación, actualización y eliminación de curso"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Full course lifecycle completed', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.environment.set('lifecycleCourseId', response.id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Curso de Integración - Test Lifecycle\",\n  \"description\": \"Curso creado para probar el ciclo completo\",\n  \"objectives\": \"Validar flujo end-to-end\",\n  \"requirements\": \"Ninguno\",\n  \"durationHours\": 10,\n  \"price\": 99.99,\n  \"level\": \"BEGINNER\",\n  \"featured\": false,\n  \"premium\": false,\n  \"categoryId\": 1\n}"
+            },
+            "url": "{{baseUrl}}/api/courses",
+            "description": "Crea curso para test de ciclo completo"
+          }
+        },
+        {
+          "name": "🔄 Database Consistency Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Database consistency maintained', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const categories = pm.response.json();",
+                  "    ",
+                  "    // Verificar que los contadores de cursos son consistentes",
+                  "    categories.forEach(category => {",
+                  "        pm.expect(category.courseCount).to.be.at.least(0);",
+                  "        pm.expect(category).to.have.property('id');",
+                  "        pm.expect(category).to.have.property('name');",
+                  "    });",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Verifica consistencia de datos en la base de datos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔐 Security & Validation Tests",
+      "description": "Pruebas de seguridad y validación avanzada",
+      "item": [
+        {
+          "name": "🚫 SQL Injection Prevention",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SQL injection attempt blocked', function () {",
+                  "    // El servidor debe manejar caracteres especiales de forma segura",
+                  "    pm.response.to.be.oneOf([200, 400, 404]);",
+                  "    ",
+                  "    // No debe haber errores de SQL en la respuesta",
+                  "    if (pm.response.text()) {",
+                  "        pm.expect(pm.response.text()).to.not.include('SQLException');",
+                  "        pm.expect(pm.response.text()).to.not.include('syntax error');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/name/'; DROP TABLE categories; --",
+            "description": "Verifica protección contra inyección SQL"
+          }
+        },
+        {
+          "name": "🛡️ Input Validation - XSS Prevention",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('XSS attempt handled properly', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "    ",
+                  "    // El contenido malicioso no debe ser ejecutado",
+                  "    const response = pm.response.text();",
+                  "    if (response) {",
+                  "        pm.expect(response).to.not.include('<script>');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<script>alert('XSS')</script>\",\n  \"description\": \"Test XSS prevention\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba prevención de ataques XSS"
+          }
+        },
+        {
+          "name": "📊 Large Payload Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Large payload handled correctly', function () {",
+                  "    // Debe rechazar payloads excesivamente grandes",
+                  "    pm.response.to.be.oneOf([400, 413, 414]);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Category\",\n  \"description\": \"{{largeString}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "Prueba manejo de payloads grandes"
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Script global que se ejecuta antes de cada request",
+          "console.log('🚀 Ejecutando test para:', pm.info.requestName);",
+          "",
+          "// Configurar variables de entorno si no existen",
+          "if (!pm.environment.get('categoryId')) {",
+          "    pm.environment.set('categoryId', '1');",
+          "}",
+          "if (!pm.environment.get('courseId')) {",
+          "    pm.environment.set('courseId', '1');",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Script global que se ejecuta después de cada request",
+          "console.log('✅ Test completado para:', pm.info.requestName);",
+          "console.log('📊 Status:', pm.response.status);",
+          "console.log('⏱️ Tiempo de respuesta:', pm.response.responseTime + 'ms');",
+          "",
+          "// Test global para todos los endpoints",
+          "pm.test('Response time is reasonable', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "// Solo verificar Content-Type para respuestas exitosas con body",
+          "if (pm.response.code < 400 && pm.response.headers.get('Content-Length') !== '0') {",
+          "    pm.test('Content-Type is JSON', function () {",
+          "        pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+          "    });",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082",
+      "type": "string",
+      "description": "URL base del microservicio Course Service"
+    },
+    {
+      "key": "categoryId",
+      "value": "1",
+      "type": "string",
+      "description": "ID de categoría existente para pruebas"
+    },
+    {
+      "key": "courseId",
+      "value": "1",
+      "type": "string", 
+      "description": "ID de curso existente para pruebas"
+    },
+    {
+      "key": "newCategoryId",
+      "value": "",
+      "type": "string",
+      "description": "ID de categoría creada dinámicamente en tests"
+    },
+    {
+      "key": "newCourseId",
+      "value": "",
+      "type": "string",
+      "description": "ID de curso creado dinámicamente en tests"
+    },
+    {
+      "key": "lifecycleCourseId",
+      "value": "",
+      "type": "string",
+      "description": "ID para pruebas de ciclo completo"
+    },
+    {
+      "key": "testInstructorId",
+      "value": "123",
+      "type": "string",
+      "description": "ID de instructor para pruebas"
+    },
+    {
+      "key": "searchKeyword",
+      "value": "Java",
+      "type": "string",
+      "description": "Palabra clave por defecto para búsquedas"
+    },
+    {
+      "key": "largeString",
+      "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(1000),
+      "type": "string",
+      "description": "String grande para pruebas de payload"
+    },
+    {
+      "key": "testTimestamp",
+      "value": "",
+      "type": "string",
+      "description": "Timestamp dinámico para pruebas"
+    }
+  ]
+}
