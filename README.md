@@ -31,6 +31,7 @@
 - ✅ **PostgreSQL Cloud** en Railway
 - ✅ **4 Categorías** preconfiguradas
 - ✅ **Sistema Premium** y destacados
+- ✅ **Scripts multiplataforma** para Windows y macOS
 
 ---
 
@@ -147,7 +148,33 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 ### 🏃‍♂️ Instrucciones de Instalación
 
-#### 🔧 Instalación Local
+#### 🚀 Inicio Rápido
+
+**🖥️ En macOS/Linux:**
+```bash
+# Opción 1: Script completo con validaciones
+./run.sh
+
+# Opción 2: Inicio rápido
+./start.sh
+
+# Opción 3: Comando directo
+mvn spring-boot:run
+```
+
+**🪟 En Windows:**
+```cmd
+REM Opción 1: Script completo con validaciones
+run.bat
+
+REM Opción 2: Inicio rápido  
+start.bat
+
+REM Opción 3: Comando directo
+mvn spring-boot:run
+```
+
+#### 🔧 Instalación Manual Paso a Paso
 ```bash
 # 1️⃣ Clonar el repositorio
 git clone [https://github.com/feliplvz/edutech-course-service]
@@ -181,6 +208,22 @@ docker run -p 8082:8082 course-service
 - **📊 Health Check**: `http://localhost:8082/health`
 - **🏷️ Categorías**: `http://localhost:8082/api/categories`
 - **📚 Cursos**: `http://localhost:8082/api/courses`
+
+### 📜 Scripts de Inicio Incluidos
+
+| Script | Plataforma | Descripción | Uso |
+|--------|------------|-------------|-----|
+| `run.sh` | macOS/Linux | Script completo con validaciones | `./run.sh` |
+| `run.bat` | Windows | Script completo con validaciones | `run.bat` |
+| `start.sh` | macOS/Linux | Inicio rápido para evaluadores | `./start.sh` |
+| `start.bat` | Windows | Inicio rápido para evaluadores | `start.bat` |
+
+**🔧 Características de los Scripts:**
+- ✅ Verificación automática de Java 17+ y Maven
+- ✅ Compilación automática del proyecto
+- ✅ Carga de variables de entorno (.env)
+- ✅ URLs de acceso mostradas al inicio
+- ✅ Instrucciones claras para el evaluador
 
 ---
 
