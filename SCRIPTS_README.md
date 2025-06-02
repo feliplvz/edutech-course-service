@@ -2,7 +2,7 @@
 
 ## 📋 Descripción
 
-Este proyecto incluye scripts multiplataforma para facilitar el inicio del servidor Spring Boot tanto para **evaluadores académicos** como para **desarrolladores**.
+Este proyecto incluye scripts multiplataforma para facilitar el inicio del servidor Spring Boot tanto para **usuarios** como para **desarrolladores**.
 
 ## 🖥️ Scripts Disponibles
 
@@ -30,7 +30,7 @@ run.bat
 - ✅ Muestra URLs de acceso
 - ✅ Ejecuta Spring Boot
 
-### ⚡ Scripts Rápidos (Para Evaluadores)
+### ⚡ Scripts Rápidos (Para Usuarios)
 
 #### `start.sh` (macOS/Linux)
 ```bash
@@ -42,7 +42,7 @@ run.bat
 start.bat
 ```
 
-## 🎯 Para Evaluadores Académicos
+## 🎯 Para Usuarios
 
 ### 🚀 Inicio Inmediato
 1. Abrir terminal en la carpeta del proyecto
@@ -101,14 +101,3 @@ chmod +x run.sh start.sh
 - Verificar conexión a Internet
 - El servicio usa Railway Cloud por defecto
 - Credenciales están preconfiguradas
-
-## 📞 Soporte
-
-Para problemas técnicos durante la evaluación:
-- **Desarrollador**: Felipe López
-- **Proyecto**: EduTech Course Service EV2
-- **Documentación Completa**: Ver `README.md` principal
-
----
-
-**🎓 ¡Preparado para Evaluación Académica! 🎓**
