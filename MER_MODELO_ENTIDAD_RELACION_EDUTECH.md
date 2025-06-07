@@ -38,7 +38,7 @@
 | **📚 Course Service** | 5 entidades | 5 tablas | 4 relaciones | ✅ Completo |
 | **📝 Evaluation Service** | 6 entidades | 6 tablas | 5 relaciones | ✅ Completo |
 | **🎧 Support Service** | 4 entidades | 4 tablas | 3 relaciones | ✅ Completo |
-| **🔗 Total Sistema** | **20 entidades** | **19 tablas** | **15+ relaciones** | ✅ **Empresarial** |
+| **🔗 Total Sistema** | **20 entidades** | **19 tablas** | **15+ relaciones** | ✅ **Finalizado** |
 
 ---
 
