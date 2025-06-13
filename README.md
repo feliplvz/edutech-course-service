@@ -35,6 +35,69 @@
 
 ---
 
+## 🚀 Inicio Rápido con Scripts
+
+### 🎮 Scripts Multiplataforma Disponibles
+
+| **Script** | **macOS/Linux** | **Windows** | **Propósito** |
+|------------|-----------------|-------------|---------------|
+| **🎮 Controlador Maestro** | `./scripts/mac/controlador.sh` | `scripts\windows\controlador.bat` | Interfaz principal con menú |
+| **⚙️ Configurar Entorno** | `./scripts/mac/configurar.sh` | `scripts\windows\configurar.bat` | Configuración inicial completa |
+| **🚀 Iniciar Servicio** | `./scripts/mac/iniciar.sh` | `scripts\windows\iniciar.bat` | Inicio avanzado con validaciones |
+| **🛑 Detener Servicio** | `./scripts/mac/detener.sh` | `scripts\windows\detener.bat` | Detención segura del servicio |
+| **📊 Verificar Estado** | `./scripts/mac/verificar-estado.sh` | `scripts\windows\verificar-estado.bat` | Análisis completo de estado |
+
+### ⚡ Inicio Ultra-Rápido (Nuevos Desarrolladores)
+
+#### 🖥️ **macOS/Linux**
+```bash
+# 1. Configurar entorno (solo primera vez)
+./scripts/mac/configurar.sh
+
+# 2. Iniciar servicio
+./scripts/mac/iniciar.sh
+
+# 3. ¡Listo! El servicio estará en http://localhost:8082
+```
+
+#### 🪟 **Windows**
+```cmd
+REM 1. Configurar entorno (solo primera vez)
+scripts\windows\configurar.bat
+
+REM 2. Iniciar servicio  
+scripts\windows\iniciar.bat
+
+REM 3. ¡Listo! El servicio estará en http://localhost:8082
+```
+
+### 🎯 **Para Evaluadores Académicos**
+
+**Opción 1: Controlador Maestro (Recomendado)**
+```bash
+./scripts/mac/controlador.sh    # macOS/Linux
+scripts\windows\controlador.bat # Windows
+```
+
+**Opción 2: Inicio Directo**
+```bash
+./scripts/mac/iniciar.sh        # macOS/Linux
+scripts\windows\iniciar.bat     # Windows
+```
+
+### 📊 **URLs de Acceso Inmediato**
+```
+🏥 Health Check: http://localhost:8082/actuator/health
+📚 API Cursos:   http://localhost:8082/api/courses
+🏷️ API Categorías: http://localhost:8082/api/categories
+⭐ Cursos Premium: http://localhost:8082/api/courses/premium
+🌟 Destacados:    http://localhost:8082/api/courses/featured
+```
+
+📖 **Documentación Completa**: Ver [`SCRIPTS_GUIDE.md`](./SCRIPTS_GUIDE.md)
+
+---
+
 ## ✨ Características Principales
 
 ### 🏢 Gestión Empresarial
@@ -584,10 +647,6 @@ nano .env
 # 3. ¡El archivo .env nunca se commitea!
 ```
 
----
-
-### 📊 **100% DE FUNCIONALIDADES IMPLEMENTADAS**
-
 </div>
 
 ### 🎯 Características del Microservicio
@@ -604,22 +663,3 @@ nano .env
 | **🗄️ Base de Datos** | ✅ Conectada | 100% |
 | **🌐 CORS** | ✅ Configurado | 100% |
 
-### 🎯 Casos de Uso Empresariales
-
-#### 🏢 Para Empresas de E-Learning
-- **📚 Gestión de Catálogo**: Administración completa de cursos corporativos
-- **🏷️ Categorización**: Organización por departamentos o competencias
-- **⭐ Promoción**: Sistema de cursos destacados y premium
-- **🔍 Búsqueda**: Localización rápida de contenido específico
-
-#### 🎓 Para Instituciones Educativas
-- **📊 Organización Académica**: Estructura de cursos por carreras
-- **👨‍🏫 Gestión Docente**: Asignación de instructores a cursos
-- **📈 Analytics**: Contadores y métricas de cursos por categoría
-- **🎯 Niveles**: Clasificación por dificultad académica
-
-#### 🚀 Para Startups de EdTech
-- **⚡ Desarrollo Rápido**: API lista para integración inmediata
-- **🔄 Escalabilidad**: Arquitectura preparada para crecimiento
-- **🌐 Cloud-Ready**: Desplegable en cualquier plataforma cloud
-- **📱 API-First**: Diseño pensado para aplicaciones móviles
